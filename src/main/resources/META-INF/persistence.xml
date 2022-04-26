@@ -1,7 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
-    <!-- Define Persistence Unit -->
-    <persistence-unit name="my_persistence_unit">
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence 
+                                 http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    
+    <persistence-unit name="StudentsPU" transaction-type="RESOURCE_LOCAL">
+        
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <class>com.people.domain.Address</class>
+        <class>com.people.domain.Contact</class>
+        <class>com.people.domain.Course</class>
+        <class>com.people.domain.Student</class>
+        <class>com.people.domain.Assignment</class>
+        
+        <properties>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/students_management?useSSL=false&amp;useTimezone=true&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="admin" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+            <property name="hibernate.show_sql" value="true" />
+        </properties>
         
     </persistence-unit>
+    
 </persistence>
+
+<!--
+
+    ======= SQL code for database =======
+
+    CREATE SCHEMA `students_management` ;
+
+    CREATE TABLE `students_management`.`address` (
+      `address_id` INT NOT NULL AUTO_INCREMENT,
+      `street` VARCHAR(45) NULL,
+      `street_number` INT NULL,
+      `country` VARCHAR(45) NULL,
+      PRIMARY KEY (`address_id`));
+
+    CREATE TABLE `students_management`.`contact` (
+      `contact_id` INT NOT NULL AUTO_INCREMENT,
+      `phone` INT NULL,
+      `email` VARCHAR(45) NULL,
+      PRIMARY KEY (`contact_id`));
+
+    CREATE TABLE `students_management`.`course` (
+      `course_id` INT NOT NULL AUTO_INCREMENT,
+      `name` VARCHAR(45) NULL,
+      `price` DOUBLE NULL,
+      PRIMARY KEY (`course_id`));
+
+    CREATE TABLE `students_management`.`student` (
+      `student_id` INT NOT NULL AUTO_INCREMENT,
+      `address_id` INT NULL,
+      `contact_id` INT NULL,
+      `name` VARCHAR(45) NULL,
+      `surname` VARCHAR(45) NULL,
+      PRIMARY KEY (`student_id`),
+      INDEX `fk_address_idx` (`address_id` ASC) VISIBLE,
+      INDEX `fk_contact_idx` (`contact_id` ASC) VISIBLE,
+      CONSTRAINT `fk_address`
+        FOREIGN KEY (`address_id`)
+        REFERENCES `students_management`.`address` (`address_id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+      CONSTRAINT `fk_contact`
+        FOREIGN KEY (`contact_id`)
+        REFERENCES `students_management`.`contact` (`contact_id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION);
+
+    CREATE TABLE `students_management`.`assignment` (
+      `assignment_id` INT NOT NULL AUTO_INCREMENT,
+      `student_id` INT NULL,
+      `course_id` INT NULL,
+      `time` VARCHAR(45) NULL,
+      PRIMARY KEY (`assignment_id`),
+      INDEX `fk_student_idx` (`student_id` ASC) VISIBLE,
+      INDEX `fk_course_idx` (`course_id` ASC) VISIBLE,
+      CONSTRAINT `fk_student`
+        FOREIGN KEY (`student_id`)
+        REFERENCES `students_management`.`student` (`student_id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+      CONSTRAINT `fk_course`
+        FOREIGN KEY (`course_id`)
+        REFERENCES `students_management`.`course` (`course_id`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION);
+
+-->
