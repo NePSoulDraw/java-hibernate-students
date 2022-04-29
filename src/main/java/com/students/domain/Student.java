@@ -16,11 +16,11 @@ public class Student implements Serializable{
     @Column(name = "student_id")
     private Integer studentId;
  
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
     private Contact contact;
     
@@ -46,12 +46,20 @@ public class Student implements Serializable{
         this.surname = surname;
     }
 
+    public Student(Address address, Contact contact, List<Assignment> assignments, String name, String surname) {
+        this.address = address;
+        this.contact = contact;
+        this.assignments = assignments;
+        this.name = name;
+        this.surname = surname;
+    }
+    
     public Student(Integer studentId, String name, String surname) {
         this.studentId = studentId;
         this.name = name;
         this.surname = surname;
     }
-
+    
     public Integer getStudentId() {
         return studentId;
     }
