@@ -10,6 +10,7 @@ public class DaoTest {
     
     public static void main(String[] args) {
         
+        /*
         StudentDao studentDao = new StudentDao();
         AddressDao addressDao = new AddressDao();
         ContactDao contactDao = new ContactDao();
@@ -30,6 +31,8 @@ public class DaoTest {
         
         System.out.println("Assignments: ");
         print(assignmentDao.getAssignmentList());
+
+        */
         
     }
     
