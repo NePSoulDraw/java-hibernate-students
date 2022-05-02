@@ -42,14 +42,6 @@ public class ContactDao extends GenericDao{
             
             ex.printStackTrace(System.out);
             
-        }finally{
-            
-            if(em != null){
-                
-                em.close();
-                
-            }
-            
         }
         
     }
@@ -69,14 +61,6 @@ public class ContactDao extends GenericDao{
         }catch(Exception ex){
             
             ex.printStackTrace(System.out);
-            
-        }finally{
-            
-            if(em != null){
-                
-                em.close();
-                
-            }
             
         }
         
@@ -98,14 +82,6 @@ public class ContactDao extends GenericDao{
         }catch(Exception ex){
             
             ex.printStackTrace(System.out);
-            
-        }finally{
-            
-            if(em != null){
-                
-                em.close();
-                
-            }
             
         }
         
