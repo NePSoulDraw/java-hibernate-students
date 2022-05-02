@@ -10,6 +10,12 @@
         
         <h1>Listado de alumnos</h1>
         
+        <hr />
+        
+        <a href="${pageContext.request.contextPath}/ServletRedirect">
+            Agregar alumno
+        </a>
+            
         <table border="1">
             <tr>
                 <th>ID</th>
