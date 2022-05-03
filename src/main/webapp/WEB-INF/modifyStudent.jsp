@@ -57,6 +57,7 @@
             <br />
             
             <input type="submit" value="Actualizar alumno" name="modify" />
+            <input type="submit" value="Eliminar alumno" name="delete" />
                 
         </form>
         
