@@ -4,24 +4,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>
-            Agregar alumno
+            Editar alumno
         </title>
     </head>
     <body>
         
         <h1>
-            Agregar alumno
+            Editar alumno
         </h1>
         
         <form name="form1" 
-              action="${pageContext.request.contextPath}/ServletAdd"
+              action="${pageContext.request.contextPath}/ServletModify?studentId=${student.studentId}"
               method="POST">
             
-            Nombre: <input type="text" name="name" />
+            Nombre: <input type="text" name="name" value="${student.name}" />
             
             <br />
             
-            Apellido: <input type="text" name="surname" />
+            Apellido: <input type="text" name="surname" value="${student.surname}" />
             
             <br />
             <br />
@@ -30,15 +30,15 @@
 
             <br />
             
-            Calle: <input type="text" name="street" />
+            Calle: <input type="text" name="street" value="${student.address.street}" />
             
             <br />
             
-            No. calle: <input type="number" name="streetNumber" />
+            No. calle: <input type="number" name="streetNumber" value="${student.address.streetNumber}" />
             
             <br />
             
-            País: <input type="text" name="country" />
+            País: <input type="text" name="country" value="${student.address.country}" />
             
             <br />
             <br />
@@ -47,16 +47,16 @@
             
             <br />
             
-            Email: <input type="email" name="email" />
+            Email: <input type="email" name="email" value="${student.contact.email}" />
             
             <br />
             
-            Teléfono: <input type="number" name="phone" />
+            Teléfono: <input type="number" name="phone" value="${student.contact.phone}" />
             
             <br />
             <br />
             
-            <input type="submit" value="Añadir alumno" name="add" />
+            <input type="submit" value="Actualizar alumno" name="modify" />
                 
         </form>
         

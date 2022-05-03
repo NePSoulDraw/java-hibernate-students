@@ -26,7 +26,11 @@
             </tr>
             <c:forEach var="student" items="${students}">
                 <tr>
-                    <td>${student.studentId}</td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/ServletModify?studentId=${student.studentId}">
+                            ${student.studentId}
+                        </a>
+                    </td>
                     <td>${student.name} ${student.surname}</td>
                     <td>${student.address.street} ${student.address.streetNumber} ${student.address.country}</td>
                     <td>${student.contact.email}</td>
